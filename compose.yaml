@@ -1,0 +1,39 @@
+services:
+  web:
+    container_name: apache-server
+    env_file: ".env"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8081:80
+      - 8443:443
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - db
+  db:
+   container_name: mysql-server
+   env_file: ".env"
+   image: mysql:8.0
+   restart: always
+   environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+   ports:
+      - 4306:3306
+   volumes:
+    - ./mysql:/var/lib/mysql
+  phpma:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+    ports:
+      - 8899:80
+    volumes:
+      - ./mysql:/var/lib/mysql
+    depends_on:
+      - db
