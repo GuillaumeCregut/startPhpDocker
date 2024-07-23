@@ -3,7 +3,7 @@ grumphp:
         phpcs:
             standard: .phpcs.xml.dist
         phpstan:
-            configuration: ./phpstan.neon.dist
+            configuration: phpstan.neon.dist
         phpmd:
             whitelist_patterns:
                 - 'src'
