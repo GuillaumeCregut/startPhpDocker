@@ -29,6 +29,8 @@ Put the rest of your php code in **src** folder.
 
 The mysql folder will contains your database files, so you can stop and restart containers without loosing datas.
 
+If you want to use BD migrations, you can insert SQL code building your DB in database.sql. Then in the apache container run the following code : ```php migration.php```. This will build your database.
+
 ## Run code
 
 To run system, simply run `docker compose up` in your project directory (this directory).
@@ -44,3 +46,5 @@ To do this in you server, you have to run a `docker exec` command on the server 
 ## Others
 
 I let the php.ini files in the folders, so you can easily modify them, and by modifying Dockerfile, copy them as `php.ini` file in the server. The destination is stored in /usr/local/etc/php.ini
+
+To obtain dabase credentials, you can use the GetEnvVars class which provide you username, password, db name and host for the mySQL server connection.

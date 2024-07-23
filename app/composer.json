@@ -3,7 +3,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Your\\App\\": "src/"
+            "App\\": "src/"
         }
     },
     "require-dev": {
